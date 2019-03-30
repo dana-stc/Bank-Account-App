@@ -1,24 +1,15 @@
 package accountMenu;
 
+import java.math.BigDecimal;
+
 public class AccountInfo {
 
     private String accountNumber;
-    private String userNumber;
-    private String amount;
-    private String balance;
+    private BigDecimal userNumber;
+    private BigDecimal amount;
+    private BigDecimal balance;
     private String accountType;
 
-    public AccountInfo() {
-
-    }
-
-    public AccountInfo(String accountNumber, String userNumber, String amount, String balance, String accountType) {
-        this.accountNumber = accountNumber;
-        this.userNumber = userNumber;
-        this.amount = amount;
-        this.balance = balance;
-        this.accountType = accountType;
-    }
 
     public Boolean verifyInfo() {
 
@@ -28,7 +19,6 @@ public class AccountInfo {
 
     }
 
-
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -37,27 +27,27 @@ public class AccountInfo {
         this.accountNumber = accountNumber;
     }
 
-    public String getUserNumber() {
+    public BigDecimal getUserNumber() {
         return userNumber;
     }
 
-    public void setUserNumber(String userNumber) {
+    public void setUserNumber(BigDecimal userNumber) {
         this.userNumber = userNumber;
     }
 
-    public String getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public String getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

@@ -4,8 +4,12 @@ import accountMenu.AccountMenu;
 import firstMenu.Menu;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginMenu {
+
+    private final static Logger LOGGER = Logger.getLogger( LoginMenu.class.getName());
 
     public void printSecondMenu(){
         System.out.println("Please make a selection: ");
@@ -16,6 +20,9 @@ public class LoginMenu {
     public void runSecondMenu() {
 
         String chosenOption2;
+
+        LOGGER.log(Level.INFO, "here starts runSeconMenu method");
+
         while (true) {
             printSecondMenu();
             Scanner choice = new Scanner(System.in);
@@ -34,7 +41,6 @@ public class LoginMenu {
             } else if (!chosenOption2.equals("1") || !chosenOption2.equals("2")) {
                 System.out.println("Please enter one of the two options! \n");
             }
-
         }
     }
 

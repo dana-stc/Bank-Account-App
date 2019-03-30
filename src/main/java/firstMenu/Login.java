@@ -6,8 +6,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Login {
+
+    private final static Logger LOGGER = Logger.getLogger( Login.class.getName());
 
     public boolean verification(String username, String password) {
 
@@ -28,14 +32,14 @@ public class Login {
                     }
                 }
                 else
-                    System.out.println("Eroare la linia" + lineNumber );
+                LOGGER.log(Level.SEVERE, "Error occured at line" + lineNumber);
 
                 line =  br.readLine();
                 lineNumber++;
             }
         } catch (IOException e) {
-            System.out.println("An error has occured while processing the file");
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "An error has occured while processing the file" );
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
         return false;
     }
