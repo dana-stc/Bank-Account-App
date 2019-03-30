@@ -1,10 +1,7 @@
 
 ## BankAccount-aplication---Pentalog
-<div align="center">
-  A Bank application  
-</div>
 
-The main menu contains two options: login & exit;
+A Bank application with a main menu which contains two options: login & exit;
 
 - <strong>Login</strong> -> you should login with a username/ password from the console (the username and password being saved on a file, line by line). After logging in, you have two options: Account & Logout	
 	- Account -> there will be shown another menu, containing the following options:
