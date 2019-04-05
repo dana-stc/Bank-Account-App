@@ -1,9 +1,12 @@
 package accountMenu;
 
+import constants.FileConstants;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,42 +19,43 @@ public class AccountCreation {
 
         Scanner option = new Scanner(System.in);
         BufferedWriter out = null;
-        try {
-            out = new BufferedWriter(new FileWriter("accountFile.txt"));
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "An error has occured while processing the file" );
-            LOGGER.log(Level.SEVERE, e.getMessage() );
-        }
-        try {
+        String file = FileConstants.FILENAME + "accountFile.txt";
 
+        try
+        {
+            out = new BufferedWriter(new FileWriter(file));
             AccountInfo account = new AccountInfo();
 
             while (true) {
                 System.out.println("Enter your account number");
                 account.setAccountNumber(option.next());
-                System.out.println("Enter your user number");
-                account.setUserNumber(new BigDecimal(option.next()));
+                System.out.println("Enter your user name");
+                account.setUserName(option.next());
                 System.out.println("Enter the amount of your account");
-                account.setAmount(new BigDecimal(option.next()));
-                System.out.println("Enter the balance of your account");
-                account.setBalance(new BigDecimal(option.next()));
+                account.setAmount(option.nextBigDecimal());
                 System.out.println("Enter the account type - Euro or Ron - ");
                 account.setAccountType(option.next());
 
-
+                // write into file
                 if (account.verifyInfo()) {
-                    out.write(account.getAccountNumber() + " " + account.getUserNumber() + " " +
-                            account.getAmount() + " " + account.getBalance() + " " + account.getAccountType());
+                    out.write(account.getAccountNumber() + " " + account.getUserName() + " " +
+                            account.getAmount().toString() + " " + account.getAccountType());
+                    System.out.println("Au fost adaugate datele in fisier.");
                     break;
+
                 } else
                     System.out.println("Invalid data; please re-enter your informations! ");
             }
-
-        } catch (IOException e) {
+        }
+        catch ( IOException e)
+        {
             LOGGER.log(Level.SEVERE, "An error has occured while processing the file" );
             LOGGER.log(Level.SEVERE, e.getMessage() );
-        } finally {
+        }
+
+        finally {
             try {
+                if ( out != null)
                 out.close();
             } catch (IOException e) {
                 LOGGER.log(Level.SEVERE, "An error has occured while closing the file" );
@@ -59,5 +63,4 @@ public class AccountCreation {
             }
         }
     }
-
 }

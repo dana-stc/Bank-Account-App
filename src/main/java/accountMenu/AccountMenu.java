@@ -14,7 +14,6 @@ public class AccountMenu {
 
         String chosenOption3;
         while (true) {
-
             printThirdMenu();
             Scanner choice = new Scanner(System.in);
             System.out.println("Enter your choice");

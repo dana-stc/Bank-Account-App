@@ -5,14 +5,12 @@ import java.math.BigDecimal;
 public class AccountInfo {
 
     private String accountNumber;
-    private BigDecimal userNumber;
+    private String userName;
     private BigDecimal amount;
-    private BigDecimal balance;
     private String accountType;
 
 
     public Boolean verifyInfo() {
-
         if (accountNumber.length() == 24 && accountNumber.startsWith("RO") && (accountType.equals("Euro") || accountType.equals("Ron")))
             return true;
         return false;
@@ -27,12 +25,12 @@ public class AccountInfo {
         this.accountNumber = accountNumber;
     }
 
-    public BigDecimal getUserNumber() {
-        return userNumber;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserNumber(BigDecimal userNumber) {
-        this.userNumber = userNumber;
+    public void setUserName(String userNumber) {
+        this.userName = userNumber;
     }
 
     public BigDecimal getAmount() {
@@ -41,14 +39,6 @@ public class AccountInfo {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
     }
 
     public String getAccountType() {

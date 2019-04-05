@@ -1,5 +1,7 @@
 package accountMenu;
 
+import constants.FileConstants;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,8 +14,8 @@ public class AccountDisplaying {
     private final static Logger LOGGER = Logger.getLogger( AccountDisplaying.class.getName());
 
     public void printAccountFile() {
-        final String FILENAME = System.getProperty("user.dir") + "\\src\\main\\resources\\accountFile.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
+        String fileName = FileConstants.FILENAME + "accountFile.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 
             String st;
             while ((st = br.readLine()) != null)

@@ -4,12 +4,9 @@ import accountMenu.AccountMenu;
 import firstMenu.Menu;
 
 import java.util.Scanner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginMenu {
-
-    private final static Logger LOGGER = Logger.getLogger( LoginMenu.class.getName());
 
     public void printSecondMenu(){
         System.out.println("Please make a selection: ");
@@ -20,8 +17,6 @@ public class LoginMenu {
     public void runSecondMenu() {
 
         String chosenOption2;
-
-        LOGGER.log(Level.INFO, "here starts runSeconMenu method");
 
         while (true) {
             printSecondMenu();
