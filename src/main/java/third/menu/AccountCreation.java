@@ -1,13 +1,13 @@
-package accountMenu;
+package third.menu;
 
 import constants.FileConstants;
+import entity.AccountInfo;
+import read.console.ConsoleReader;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +17,7 @@ public class AccountCreation {
 
     public void addAccountInformationsIntoFile() {
 
-        Scanner option = new Scanner(System.in);
+        ConsoleReader reader = ConsoleReader.getInstance();
         BufferedWriter out = null;
         String file = FileConstants.FILENAME + "accountFile.txt";
 
@@ -28,21 +28,19 @@ public class AccountCreation {
 
             while (true) {
                 System.out.println("Enter your account number");
-                account.setAccountNumber(option.next());
+                account.setAccountNumber(reader.readFromConsole());
                 System.out.println("Enter your user name");
-                account.setUserName(option.next());
+                account.setUserName(reader.readFromConsole());
                 System.out.println("Enter the amount of your account");
-                account.setAmount(option.nextBigDecimal());
+                account.setAmount(new BigDecimal(reader.readFromConsole()));
                 System.out.println("Enter the account type - Euro or Ron - ");
-                account.setAccountType(option.next());
+                account.setAccountType(reader.readFromConsole());
 
                 // write into file
                 if (account.verifyInfo()) {
                     out.write(account.getAccountNumber() + " " + account.getUserName() + " " +
                             account.getAmount().toString() + " " + account.getAccountType());
-                    System.out.println("Au fost adaugate datele in fisier.");
                     break;
-
                 } else
                     System.out.println("Invalid data; please re-enter your informations! ");
             }

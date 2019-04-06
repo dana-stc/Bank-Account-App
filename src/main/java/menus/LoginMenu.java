@@ -1,10 +1,6 @@
-package loginMenu;
+package menus;
 
-import accountMenu.AccountMenu;
-import firstMenu.Menu;
-
-import java.util.Scanner;
-import java.util.logging.Logger;
+import read.console.ConsoleReader;
 
 public class LoginMenu {
 
@@ -17,12 +13,11 @@ public class LoginMenu {
     public void runSecondMenu() {
 
         String chosenOption2;
-
+        ConsoleReader reader = ConsoleReader.getInstance();
         while (true) {
             printSecondMenu();
-            Scanner choice = new Scanner(System.in);
             System.out.println("Enter your choice");
-            chosenOption2 = choice.next();
+            chosenOption2 = reader.readFromConsole();
 
             if (chosenOption2.equals("1")) {
                 AccountMenu accountMenu = new AccountMenu();
@@ -30,7 +25,7 @@ public class LoginMenu {
                 break;
             } else if (chosenOption2.equals("2")) {
                 System.out.println("You have successfully logged out");
-                Menu menu = new Menu();
+                MainMenu menu = new MainMenu();
                 menu.runMenu();
                 break;
             } else if (!chosenOption2.equals("1") || !chosenOption2.equals("2")) {

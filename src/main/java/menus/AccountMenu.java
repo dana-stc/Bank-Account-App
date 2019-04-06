@@ -1,6 +1,8 @@
-package accountMenu;
+package menus;
 
-import java.util.Scanner;
+import read.console.ConsoleReader;
+import third.menu.AccountCreation;
+import third.menu.AccountDisplayer;
 
 public class AccountMenu {
 
@@ -13,18 +15,18 @@ public class AccountMenu {
     public void runThirdMenu() {
 
         String chosenOption3;
+        ConsoleReader reader = ConsoleReader.getInstance();
         while (true) {
             printThirdMenu();
-            Scanner choice = new Scanner(System.in);
             System.out.println("Enter your choice");
-            chosenOption3 = choice.next();
+            chosenOption3 = reader.readFromConsole();
 
             if (chosenOption3.equals("1")) {
                 AccountCreation createAccount = new AccountCreation();
                 createAccount.addAccountInformationsIntoFile();
 
             } else if (chosenOption3.equals("2")) {
-                AccountDisplaying accountDisplaying = new AccountDisplaying();
+                AccountDisplayer accountDisplaying = new AccountDisplayer();
                 accountDisplaying.printAccountFile();
 
             } else if (!chosenOption3.equals("1") || !chosenOption3.equals("2")) {

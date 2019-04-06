@@ -1,8 +1,9 @@
-package firstMenu;
+package menus;
 
-import java.util.Scanner;
+import first.menu.Login;
+import read.console.ConsoleReader;
 
-public class Menu {
+public class MainMenu {
 
     public void printHeader() {
         System.out.println("+---------------------------------------+");
@@ -20,12 +21,11 @@ public class Menu {
     public void runMenu() {
         printHeader();
         String chosenOption;
+        ConsoleReader reader = ConsoleReader.getInstance();
         while (true) {
-
             printMenu();
-            Scanner choice = new Scanner(System.in);
             System.out.println("Enter your choice");
-            chosenOption = choice.next();
+            chosenOption = reader.readFromConsole();
 
             if (chosenOption.equals("1")) {
                 Login login = new Login();
@@ -38,6 +38,7 @@ public class Menu {
                 System.out.println("Please enter one of the two options! \n");
             }
         }
+        reader.closeScaner();
     }
 
 

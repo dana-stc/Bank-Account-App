@@ -1,4 +1,4 @@
-package accountMenu;
+package third.menu;
 
 import constants.FileConstants;
 
@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AccountDisplaying {
+public class AccountDisplayer {
 
-    private final static Logger LOGGER = Logger.getLogger( AccountDisplaying.class.getName());
+    private final static Logger LOGGER = Logger.getLogger( AccountDisplayer.class.getName());
 
     public void printAccountFile() {
         String fileName = FileConstants.FILENAME + "accountFile.txt";

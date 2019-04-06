@@ -1,8 +1,9 @@
-package accountMenu;
+package entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class AccountInfo {
+public class AccountInfo implements Serializable {
 
     private String accountNumber;
     private String userName;
