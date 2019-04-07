@@ -3,6 +3,8 @@ package entity;
 import java.io.Serializable;
 
 public class UserInfo implements Serializable {
+
+
     private String userName;
     private String password;
 
@@ -10,7 +12,6 @@ public class UserInfo implements Serializable {
         this.userName = userName;
         this.password = password;
     }
-
 
     @Override
     public boolean equals(Object obj) {

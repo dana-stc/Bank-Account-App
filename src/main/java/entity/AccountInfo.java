@@ -18,6 +18,11 @@ public class AccountInfo implements Serializable {
 
     }
 
+    @Override
+    public String toString() {
+        return this.accountNumber + ", " + this.userName + ", " + this.amount + ", " + this.accountType;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }

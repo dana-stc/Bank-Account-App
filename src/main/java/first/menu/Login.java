@@ -1,5 +1,6 @@
 package first.menu;
 
+import constants.FileConstants;
 import entity.UserInfo;
 import menus.LoginMenu;
 import read.console.ConsoleReader;
@@ -13,49 +14,15 @@ import java.util.logging.Logger;
 public class Login {
 
     private final static Logger LOGGER = Logger.getLogger( Login.class.getName());
-    private final String FILENAME = System.getProperty("user.dir") + "\\src\\main\\resources\\userList.dat";
 
-    /*
-    public boolean verify(String username, String password) {
-
-        try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
-
-            String line =  br.readLine();
-            Integer lineNumber = 1;
-
-            while (line != null) {
-                String[] output  = line.split(" ");
-                if(output.length == 2) {
-                    if (output[0].equals(username)) {
-                        if (output[1].equals(password)) {
-                            System.out.println("Welcome, " + username);
-                            return true;
-                        }
-                    }
-                }
-                else
-                LOGGER.log(Level.SEVERE, "Error occured at line" + lineNumber);
-
-                line =  br.readLine();
-                lineNumber++;
-            }
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "An error has occured while processing the file" );
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }
-        return false;
-    }
-    */
-
-    public UserInfo verifyWithObjects(String username, String password){
+    private UserInfo verifyWithObjects(String username, String password){
 
         UserInfo myUser = new UserInfo(username, password);
         CustomFileReader fileReader = new CustomFileReader();
 
         //lista user existenti
-        List<UserInfo> myList =  fileReader.readFromFileAny(FILENAME);
+        List<UserInfo> myList =  fileReader.readFromFileAny(FileConstants.USER_FILE);
         if(myList.size() > 0){
-
             for(UserInfo user: myList)
             {
                 if(user.equals(myUser))
@@ -65,10 +32,9 @@ public class Login {
         }
         //When the file is empty, insert the first user
         else {
-
             List<UserInfo> user = new ArrayList<>();
             user.add(myUser);
-            if(fileReader.writeFromFileAny(FILENAME, user)){
+            if(fileReader.writeFromFileAny(FileConstants.USER_FILE, user)){
                 return myUser;
             }
             LOGGER.log(Level.SEVERE,"Error inserting user into the database");

@@ -6,7 +6,7 @@ import third.menu.AccountDisplayer;
 
 public class AccountMenu {
 
-    public void printThirdMenu() {
+    private void printThirdMenu() {
         System.out.println("Please make a selection: ");
         System.out.println("1) Create account");
         System.out.println("2) Display accounts");
