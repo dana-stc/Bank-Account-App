@@ -8,7 +8,7 @@ public class MainMenu {
     public void printHeader() {
         System.out.println("+---------------------------------------+");
         System.out.println("|             Welcome to our            |");
-        System.out.println("|            Menu application           |");
+        System.out.println("|            Bank application           |");
         System.out.println("+---------------------------------------+");
     }
 
