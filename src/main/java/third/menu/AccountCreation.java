@@ -2,6 +2,7 @@ package third.menu;
 
 import constants.FileConstants;
 import entity.AccountInfo;
+import entity.UserInfo;
 import read.console.ConsoleReader;
 import read.file.CustomFileReader;
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ public class AccountCreation {
 
     private final static Logger LOGGER = Logger.getLogger(AccountCreation.class.getName());
 
-    public void addAccountInformationsIntoFile() {
+    public void addAccountInformationsIntoFile(UserInfo currentUser) {
 
         ConsoleReader reader = ConsoleReader.getInstance();
         AccountInfo account = new AccountInfo();
@@ -20,8 +21,7 @@ public class AccountCreation {
         while (true) {
             System.out.println("Enter your account number");
             account.setAccountNumber(reader.readFromConsole());
-            System.out.println("Enter your user name");
-            account.setUserName(reader.readFromConsole());
+            account.setUserName(currentUser.getUserName());
             System.out.println("Enter the amount of your account");
             account.setAmount(new BigDecimal(reader.readFromConsole()));
             System.out.println("Enter the account type - Euro or Ron - ");

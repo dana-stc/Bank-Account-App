@@ -1,6 +1,6 @@
 package menus;
 
-import first.menu.Login;
+import login.Login;
 import read.console.ConsoleReader;
 
 public class MainMenu {
@@ -35,7 +35,7 @@ public class MainMenu {
                 System.out.println("Thank you for using our application! ");
                 break;
             } else if (!chosenOption.equals("1") || !chosenOption.equals("2")) {
-                System.out.println("Please enter one of the two options! \n");
+              System.out.println("Please re-enter an valid option! ");
             }
         }
         reader.closeScaner();

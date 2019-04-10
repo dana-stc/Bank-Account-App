@@ -1,4 +1,4 @@
-package first.menu;
+package login;
 
 import constants.FileConstants;
 import entity.UserInfo;
@@ -43,7 +43,7 @@ public class Login {
 
     }
 
-    public void loginMenu() {
+    public void loginMenu(){
         ConsoleReader reader = ConsoleReader.getInstance();
         while (true) {
             System.out.println("Enter the username");
@@ -52,15 +52,15 @@ public class Login {
             System.out.println("Enter the password");
             String password = reader.readFromConsole();
 
-            UserInfo ifLoggedIn = this.verifyWithObjects(username, password);
+            UserInfo currentUser = this.verifyWithObjects(username, password);
 
-            if (ifLoggedIn == null) {
-                System.out.println("Wrong username/password ");
+            if (currentUser == null) {
+                System.out.println("Wrong username/password");
             }
             else
             {
                 LoginMenu secondMenu = new LoginMenu();
-                secondMenu.runSecondMenu();
+                secondMenu.runSecondMenu(currentUser);
                 break;
             }
         }

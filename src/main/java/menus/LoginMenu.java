@@ -1,5 +1,6 @@
 package menus;
 
+import entity.UserInfo;
 import read.console.ConsoleReader;
 
 public class LoginMenu {
@@ -10,7 +11,7 @@ public class LoginMenu {
         System.out.println("2) Logout");
     }
 
-    public void runSecondMenu() {
+    public void runSecondMenu(UserInfo currentUser) {
 
         String chosenOption2;
         ConsoleReader reader = ConsoleReader.getInstance();
@@ -21,7 +22,7 @@ public class LoginMenu {
 
             if (chosenOption2.equals("1")) {
                 AccountMenu accountMenu = new AccountMenu();
-                accountMenu.runThirdMenu();
+                accountMenu.runThirdMenu(currentUser);
                 break;
             } else if (chosenOption2.equals("2")) {
                 System.out.println("You have successfully logged out");

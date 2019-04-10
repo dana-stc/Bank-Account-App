@@ -1,5 +1,6 @@
 package menus;
 
+import entity.UserInfo;
 import read.console.ConsoleReader;
 import third.menu.AccountCreation;
 import third.menu.AccountDisplayer;
@@ -12,7 +13,7 @@ public class AccountMenu {
         System.out.println("2) Display accounts");
     }
 
-    public void runThirdMenu() {
+    public void runThirdMenu(UserInfo currentUser) {
 
         String chosenOption3;
         ConsoleReader reader = ConsoleReader.getInstance();
@@ -22,8 +23,9 @@ public class AccountMenu {
             chosenOption3 = reader.readFromConsole();
 
             if (chosenOption3.equals("1")) {
+
                 AccountCreation createAccount = new AccountCreation();
-                createAccount.addAccountInformationsIntoFile();
+                createAccount.addAccountInformationsIntoFile(currentUser);
 
             } else if (chosenOption3.equals("2")) {
                 AccountDisplayer accountDisplaying = new AccountDisplayer();
