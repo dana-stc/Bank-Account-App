@@ -14,6 +14,7 @@ public class PaymentFunctionality {
 
         String chosenOption;
         ConsoleReader reader = ConsoleReader.getInstance();
+
         CustomFileReader customFileReader = new CustomFileReader();
         List<AccountInfo> accountList = customFileReader.readFromFileAny(FileConstants.ACCOUNT_FILE);
 
@@ -25,19 +26,43 @@ public class PaymentFunctionality {
         System.out.println("Please enter a choice for the account from which you want to make the transfer");
         chosenOption = reader.readFromConsole();
 
-        if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  accountList.size() + 1) {
-
+        if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  accountList.size() + 1)
+        {
             AccountInfo currentAccount = accountList.get(Integer.parseInt(chosenOption) - 1);
+
             System.out.println("Please enter the amount that you want to transfer");
             chosenOption = reader.readFromConsole();
             if (chosenOption.matches("[0-9]+") && new BigDecimal(chosenOption).compareTo(currentAccount.getAmount()) <= 0 )
             {
+                // the chosen amount
                 BigDecimal chosenAmount = new BigDecimal(chosenOption);
+
                 System.out.println("-------------------------------------------");
                 accountDisplaying.printAccountByType(accountList,currentAccount.getAccountType(), currentAccount.getAccountNumber() );
                 System.out.println("-------------------------------------------");
-                System.out.println("Please enter the account where you want to make the transfer");
 
+                System.out.println("Please enter the account where you want to make the transfer");
+                chosenOption = reader.readFromConsole();
+                if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  accountList.size() + 1)
+                {
+                    AccountInfo secondAccount = accountList.get(Integer.parseInt(chosenOption) - 1);
+
+                    BigDecimal currentAcountAmount = currentAccount.getAmount();
+                    BigDecimal secondAccountAmount = secondAccount.getAmount();
+                    currentAcountAmount = currentAcountAmount.subtract(chosenAmount); // '-' operation in BigDecimal
+                    secondAccountAmount = secondAccountAmount.add(chosenAmount); // '+' operation in BigDecimal
+                    currentAccount.setAmount(currentAcountAmount);
+                    secondAccount.setAmount(secondAccountAmount);
+
+                System.out.println(chosenAmount + " " + currentAccount.getAccountType() +  " had been transfered into your " + secondAccount.getAccountNumber() + " account.");
+
+                System.out.println("-------------------------------------------");
+                accountDisplaying.printAccountForPayment(accountList);
+                System.out.println("-------------------------------------------");
+                }
+                else {
+                    System.out.println("Please enter a valid option! ");
+                }
             }
             else {
                 System.out.println("Please enter an amount <= than the current amount! ");
@@ -46,9 +71,5 @@ public class PaymentFunctionality {
         else {
             System.out.println("Please enter a valid option! ");
         }
-
-
-
-      //  chosenOption = reader.readFromConsole();
     }
 }
