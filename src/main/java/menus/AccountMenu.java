@@ -1,11 +1,16 @@
 package menus;
 
-import entity.UserInfo;
+import custom.exceptions.AmountCharacterIntroducingException;
 import read.console.ConsoleReader;
 import account.AccountCreation;
 import account.AccountDisplayer;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class AccountMenu {
+
+    private final static Logger LOGGER = Logger.getLogger(AccountCreation.class.getName());
 
     private void printThirdMenu() {
         System.out.println("Please make a selection: ");
@@ -14,7 +19,7 @@ public class AccountMenu {
         System.out.println("3) Back to login menu");
     }
 
-    public void runThirdMenu(UserInfo currentUser) {
+    public void runThirdMenu() {
 
         String chosenOption3;
         ConsoleReader reader = ConsoleReader.getInstance();
@@ -25,7 +30,11 @@ public class AccountMenu {
 
             if (chosenOption3.equals("1")) {
                 AccountCreation createAccount = new AccountCreation();
-                createAccount.addAccountInformationsIntoFile(currentUser);
+                try {
+                    createAccount.addAccountInformationsIntoFile();
+                } catch (AmountCharacterIntroducingException e) {
+                    LOGGER.log(Level.SEVERE,"Error using characters in Amount");
+                }
 
             } else if (chosenOption3.equals("2")) {
                 AccountDisplayer accountDisplaying = new AccountDisplayer();
@@ -33,7 +42,7 @@ public class AccountMenu {
 
             }else if (chosenOption3.equals("3")) {
                 LoginMenu loginMenu = new LoginMenu();
-                loginMenu.runSecondMenu(currentUser);
+                loginMenu.runSecondMenu();
                 break;
             } else if (!chosenOption3.equals("1") || !chosenOption3.equals("2")) {
                 System.out.println("Please enter one of the two options! \n");

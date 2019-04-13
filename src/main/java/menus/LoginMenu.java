@@ -1,6 +1,7 @@
 package menus;
 
 import account.PaymentFunctionality;
+import cache.CacheUserData;
 import entity.UserInfo;
 import read.console.ConsoleReader;
 
@@ -13,7 +14,7 @@ public class LoginMenu {
         System.out.println("3) Logout");
     }
 
-    public void runSecondMenu(UserInfo currentUser) {
+    public void runSecondMenu() {
 
         String chosenOption2;
         ConsoleReader reader = ConsoleReader.getInstance();
@@ -24,7 +25,7 @@ public class LoginMenu {
 
             if (chosenOption2.equals("1")) {
                 AccountMenu accountMenu = new AccountMenu();
-                accountMenu.runThirdMenu(currentUser);
+                accountMenu.runThirdMenu();
                 break;
             }else if (chosenOption2.equals("2")) {
                 PaymentFunctionality transferMoney = new PaymentFunctionality();
@@ -32,6 +33,7 @@ public class LoginMenu {
 
             }else if (chosenOption2.equals("3")) {
                 System.out.println("You have successfully logged out");
+                CacheUserData.destroyCache();
                 MainMenu menu = new MainMenu();
                 menu.runMenu();
                 break;

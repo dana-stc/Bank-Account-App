@@ -1,6 +1,8 @@
 package login;
 
+import cache.CacheUserData;
 import constants.FileConstants;
+import entity.AccountInfo;
 import entity.UserInfo;
 import menus.LoginMenu;
 import read.console.ConsoleReader;
@@ -40,7 +42,6 @@ public class Login {
             LOGGER.log(Level.SEVERE,"Error inserting user into the database");
             return null;
         }
-
     }
 
     public void loginMenu(){
@@ -59,8 +60,12 @@ public class Login {
             }
             else
             {
+                CacheUserData cacheUserData = CacheUserData.getInstance(); // asa iau instanta unica
+                cacheUserData.setUserInfo(currentUser);
+                cacheUserData.populateListOfAccounts();
+
                 LoginMenu secondMenu = new LoginMenu();
-                secondMenu.runSecondMenu(currentUser);
+                secondMenu.runSecondMenu();
                 break;
             }
         }

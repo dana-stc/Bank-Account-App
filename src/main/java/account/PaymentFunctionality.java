@@ -1,5 +1,6 @@
 package account;
 
+import cache.CacheUserData;
 import constants.FileConstants;
 import entity.AccountInfo;
 import read.console.ConsoleReader;
@@ -14,21 +15,18 @@ public class PaymentFunctionality {
 
         String chosenOption;
         ConsoleReader reader = ConsoleReader.getInstance();
-
-        CustomFileReader customFileReader = new CustomFileReader();
-        List<AccountInfo> accountList = customFileReader.readFromFileAny(FileConstants.ACCOUNT_FILE);
-
+        CacheUserData cache = CacheUserData.getInstance();
         System.out.println("-------------------------------------------");
         AccountDisplayer accountDisplaying = new AccountDisplayer();
-        accountDisplaying.printAccountForPayment(accountList);
+        accountDisplaying.printAccountForPayment();
         System.out.println("-------------------------------------------");
 
         System.out.println("Please enter a choice for the account from which you want to make the transfer");
         chosenOption = reader.readFromConsole();
 
-        if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  accountList.size() + 1)
+        if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  cache.getListAccounts().size() + 1)
         {
-            AccountInfo currentAccount = accountList.get(Integer.parseInt(chosenOption) - 1);
+            AccountInfo currentAccount = cache.getListAccounts().get(Integer.parseInt(chosenOption) - 1);
 
             System.out.println("Please enter the amount that you want to transfer");
             chosenOption = reader.readFromConsole();
@@ -38,14 +36,14 @@ public class PaymentFunctionality {
                 BigDecimal chosenAmount = new BigDecimal(chosenOption);
 
                 System.out.println("-------------------------------------------");
-                accountDisplaying.printAccountByType(accountList,currentAccount.getAccountType(), currentAccount.getAccountNumber() );
+                accountDisplaying.printAccountByType(currentAccount.getAccountType(), currentAccount.getAccountNumber() );
                 System.out.println("-------------------------------------------");
 
                 System.out.println("Please enter the account where you want to make the transfer");
                 chosenOption = reader.readFromConsole();
-                if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  accountList.size() + 1)
+                if(chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) <  cache.getListAccounts().size() + 1)
                 {
-                    AccountInfo secondAccount = accountList.get(Integer.parseInt(chosenOption) - 1);
+                    AccountInfo secondAccount = cache.getListAccounts().get(Integer.parseInt(chosenOption) - 1);
 
                     BigDecimal currentAcountAmount = currentAccount.getAmount();
                     BigDecimal secondAccountAmount = secondAccount.getAmount();
@@ -57,7 +55,7 @@ public class PaymentFunctionality {
                 System.out.println(chosenAmount + " " + currentAccount.getAccountType() +  " had been transfered into your " + secondAccount.getAccountNumber() + " account.");
 
                 System.out.println("-------------------------------------------");
-                accountDisplaying.printAccountForPayment(accountList);
+                accountDisplaying.printAccountForPayment();
                 System.out.println("-------------------------------------------");
                 }
                 else {
