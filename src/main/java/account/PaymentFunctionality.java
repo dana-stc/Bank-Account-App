@@ -1,17 +1,16 @@
 package account;
 
 import cache.CacheUserData;
-import constants.FileConstants;
+import custom.exceptions.UnacceptableTransferException;
 import entity.AccountInfo;
 import read.console.ConsoleReader;
-import read.file.CustomFileReader;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 
 public class PaymentFunctionality {
 
-    public void transferSomeMoney(){
+    public void transferSomeMoney() throws UnacceptableTransferException {
 
         String chosenOption;
         ConsoleReader reader = ConsoleReader.getInstance();
@@ -20,6 +19,11 @@ public class PaymentFunctionality {
         AccountDisplayer accountDisplaying = new AccountDisplayer();
         accountDisplaying.printAccountForPayment();
         System.out.println("-------------------------------------------");
+
+        if(cache.getListAccounts().size() == 1 || cache.getListAccounts().size() == 0 )
+        {
+            throw new UnacceptableTransferException("Error, you cannot make transfers");
+        }
 
         System.out.println("Please enter a choice for the account from which you want to make the transfer");
         chosenOption = reader.readFromConsole();
@@ -38,6 +42,7 @@ public class PaymentFunctionality {
                 System.out.println("-------------------------------------------");
                 accountDisplaying.printAccountByType(currentAccount.getAccountType(), currentAccount.getAccountNumber() );
                 System.out.println("-------------------------------------------");
+
 
                 System.out.println("Please enter the account where you want to make the transfer");
                 chosenOption = reader.readFromConsole();

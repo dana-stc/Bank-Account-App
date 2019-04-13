@@ -2,6 +2,7 @@ package menus;
 
 import account.PaymentFunctionality;
 import cache.CacheUserData;
+import custom.exceptions.UnacceptableTransferException;
 import entity.UserInfo;
 import read.console.ConsoleReader;
 
@@ -29,7 +30,11 @@ public class LoginMenu {
                 break;
             }else if (chosenOption2.equals("2")) {
                 PaymentFunctionality transferMoney = new PaymentFunctionality();
-                transferMoney.transferSomeMoney();
+                try {
+                    transferMoney.transferSomeMoney();
+                } catch (UnacceptableTransferException e) {
+                    System.out.println("Error, transfers not allowed here ");
+                }
 
             }else if (chosenOption2.equals("3")) {
                 System.out.println("You have successfully logged out");
