@@ -25,13 +25,13 @@ public class AccountCreation {
             account.setAccountNumber(reader.readFromConsole());
             account.setUserName(cache.getUserInfo().getUserName());
             System.out.println("Enter the amount of your account");
-
-            account.setAmount(new BigDecimal(reader.readFromConsole()));
-            if(!reader.readFromConsole().matches("[0-9]+"))
+            String ammount = reader.readFromConsole();
+            if(!ammount.matches("[0-9]+"))
             {
                 throw new AmountCharacterIntroducingException("Characters not allowed in amount");
             }
 
+            account.setAmount(new BigDecimal(ammount));
             System.out.println("Enter the account type - Euro or Ron - ");
             account.setAccountType(reader.readFromConsole());
 

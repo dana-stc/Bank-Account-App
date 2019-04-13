@@ -33,7 +33,7 @@ public class AccountMenu {
                 try {
                     createAccount.addAccountInformationsIntoFile();
                 } catch (AmountCharacterIntroducingException e) {
-                    LOGGER.log(Level.SEVERE,"Error using characters in Amount");
+                   System.out.println("Error, do not use characters in Amount");
                 }
 
             } else if (chosenOption3.equals("2")) {
