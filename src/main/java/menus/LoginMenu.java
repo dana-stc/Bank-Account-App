@@ -34,9 +34,9 @@ public class LoginMenu {
                 accountMenu.runThirdMenu();
                 break;
             }else if (chosenOption2.equals("2")) {
-                PaymentFunctionality transferMoney = new PaymentFunctionality();
+                PaymentFunctionality transferSomeMoney = new PaymentFunctionality();
                 try {
-                    transferMoney.transferSomeMoney();
+                    transferSomeMoney.transferMoney();
                 } catch (UnacceptableTransferException e) {
                     System.out.println("Error, transfers not allowed here ");
                 }

@@ -61,6 +61,15 @@ public class CacheUserData {
     }
 
 
+    /**
+     * save the accounts and users
+     */
+    public void saveCacheData(){
+        CustomFileReader fileReader = new CustomFileReader();
+        fileReader.writeFromFileAny(FileConstants.ACCOUNT_FILE, this.listAccounts);
+    }
+
+
     public static void destroyCache(){
         instance = null;
     }

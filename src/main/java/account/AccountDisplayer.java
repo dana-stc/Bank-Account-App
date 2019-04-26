@@ -6,11 +6,8 @@ package account;
 
 import cache.CacheUserData;
 import entity.AccountInfo;
-import java.util.logging.Logger;
 
 public class AccountDisplayer {
-
-    private final static Logger LOGGER = Logger.getLogger( AccountDisplayer.class.getName());
 
     /**
      * prints the content of an account
@@ -23,6 +20,9 @@ public class AccountDisplayer {
         }
     }
 
+    /**
+     * prints the content of the accounts with a number before it - for the option
+     */
     public void printAccountForPayment() {
         CacheUserData cache = CacheUserData.getInstance();
         for(int i=0;i < cache.getListAccounts().size(); i++)
@@ -31,7 +31,11 @@ public class AccountDisplayer {
         }
     }
 
-
+    /**
+     *  prints the content of the accounts that are the same type with the account chosen + a number before it - for the option
+     * @param type the type of the account chosen by the user
+     * @param accountNumber the account number of the account chosen by the user
+     */
     public void printAccountByType(String type, String accountNumber) {
         CacheUserData cache = CacheUserData.getInstance();
         for(int i=0; i < cache.getListAccounts().size(); i++)
