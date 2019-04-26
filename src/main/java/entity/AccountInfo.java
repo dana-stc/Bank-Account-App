@@ -1,3 +1,10 @@
+/**
+ * AccountInfo class
+ * the accounts that a user have as it login
+ *
+ * @author Stoica Ioana-Dana
+ */
+
 package entity;
 
 import java.io.Serializable;
@@ -10,13 +17,6 @@ public class AccountInfo implements Serializable {
     private BigDecimal amount;
     private String accountType;
 
-
-    public Boolean verifyInfo() {
-        if (accountNumber.length() == 24 && accountNumber.startsWith("RO") && (accountType.equals("Euro") || accountType.equals("Ron")))
-            return true;
-        return false;
-
-    }
 
     @Override
     public String toString() {

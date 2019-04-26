@@ -1,9 +1,14 @@
+/**
+ * LoginMenu class
+ * the menu after you login with a user
+ * @Author Stoica Ioana-Dana
+ */
+
 package menus;
 
 import account.PaymentFunctionality;
 import cache.CacheUserData;
 import custom.exceptions.UnacceptableTransferException;
-import entity.UserInfo;
 import read.console.ConsoleReader;
 
 public class LoginMenu {

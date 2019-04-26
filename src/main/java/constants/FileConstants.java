@@ -1,3 +1,7 @@
+/**
+ * @Author Stoica Ioana-Dana
+ */
+
 package constants;
 
 public class FileConstants {

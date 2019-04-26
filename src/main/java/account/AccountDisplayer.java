@@ -1,3 +1,7 @@
+/**
+ * @Author Stoica Ioana-Dana
+ */
+
 package account;
 
 import cache.CacheUserData;
@@ -8,7 +12,9 @@ public class AccountDisplayer {
 
     private final static Logger LOGGER = Logger.getLogger( AccountDisplayer.class.getName());
 
-
+    /**
+     * prints the content of an account
+     */
     public void printAccountFile() {
         CacheUserData cache = CacheUserData.getInstance();
         for(AccountInfo cont: cache.getListAccounts())

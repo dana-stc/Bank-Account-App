@@ -1,3 +1,7 @@
+/**
+ * @Author Stoica Ioana-Dana
+ */
+
 package account;
 
 import cache.CacheUserData;
@@ -8,12 +12,21 @@ import read.console.ConsoleReader;
 import read.file.CustomFileReader;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.logging.Logger;
 
-public class AccountCreation {
 
-    private final static Logger LOGGER = Logger.getLogger(AccountCreation.class.getName());
+public class AccountCreator {
 
+
+    public Boolean verifyInfo(AccountInfo account) {
+        if (account.getAccountNumber().length() == 24 && account.getAccountNumber().startsWith("RO") && (account.getAccountType().equals("Euro") || account.getAccountType().equals("Ron")))
+            return true;
+        return false;
+    }
+
+    /**
+     * a method for adding account informations readed from the keyboard into the cache file
+     * @throws AmountCharacterIntroducingException - characters not allowed in amount
+     */
     public void addAccountInformationsIntoFile() throws AmountCharacterIntroducingException {
 
         ConsoleReader reader = ConsoleReader.getInstance();
@@ -36,12 +49,13 @@ public class AccountCreation {
             account.setAccountType(reader.readFromConsole());
 
             CustomFileReader fileReader = new CustomFileReader();
-            // add multiple objects into the file
-            List<AccountInfo> accountList = fileReader.readFromFileAny(FileConstants.ACCOUNT_FILE);
-            accountList.add(account);
 
             // write into file
-            if (account.verifyInfo()) {
+            if (verifyInfo(account)) {
+                // add multiple objects into the file
+                List<AccountInfo> accountList = fileReader.readFromFileAny(FileConstants.ACCOUNT_FILE);
+                accountList.add(account);
+
                 fileReader.writeFromFileAny(FileConstants.ACCOUNT_FILE, accountList);
                 cache.populateListOfAccounts();
                 break;

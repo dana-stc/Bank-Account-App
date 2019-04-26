@@ -1,16 +1,17 @@
+/**
+ * AccountMenu class
+ * the menu after accessing Account from the login menu
+ * @Author Stoica Ioana-Dana
+ */
+
 package menus;
 
 import custom.exceptions.AmountCharacterIntroducingException;
 import read.console.ConsoleReader;
-import account.AccountCreation;
+import account.AccountCreator;
 import account.AccountDisplayer;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class AccountMenu {
-
-    private final static Logger LOGGER = Logger.getLogger(AccountCreation.class.getName());
 
     private void printThirdMenu() {
         System.out.println("Please make a selection: ");
@@ -29,7 +30,7 @@ public class AccountMenu {
             chosenOption3 = reader.readFromConsole();
 
             if (chosenOption3.equals("1")) {
-                AccountCreation createAccount = new AccountCreation();
+                AccountCreator createAccount = new AccountCreator();
                 try {
                     createAccount.addAccountInformationsIntoFile();
                 } catch (AmountCharacterIntroducingException e) {

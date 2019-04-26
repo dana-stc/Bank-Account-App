@@ -1,3 +1,9 @@
+/**
+ * MainMenu class
+ * the main menu of the app
+ * @Author Stoica Ioana-Dana
+ */
+
 package menus;
 
 import login.Login;

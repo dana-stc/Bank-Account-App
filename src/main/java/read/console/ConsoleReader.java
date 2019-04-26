@@ -1,17 +1,26 @@
+/**
+ * ConsoleReader class
+ * reading from the keyboard an option
+ */
+
 package read.console;
 
 import java.util.Scanner;
 
 public class ConsoleReader {
 
-    private static ConsoleReader single_instance = null;
     private Scanner option;
+    private static ConsoleReader single_instance = null; // Singleton
 
     private ConsoleReader(){
-        option=new Scanner(System.in);
+        option = new Scanner(System.in);
     }
 
-    // singleton
+    /**
+     * Singleton Design Pattern
+     *
+     * @return a single instance of the class
+     */
     public static ConsoleReader getInstance()
     {
         if (single_instance == null)

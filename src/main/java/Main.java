@@ -1,3 +1,9 @@
+/**
+ * Main class
+ *
+ * @author Stoica Ioana-Dana
+ */
+
 import menus.MainMenu;
 
 public class Main {

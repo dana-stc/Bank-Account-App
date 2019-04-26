@@ -1,8 +1,13 @@
+/**
+ * Login class
+ * implements the logic for loginș user and password verifications
+ * @Author Stoica Ioana-Dana
+ */
+
 package login;
 
 import cache.CacheUserData;
 import constants.FileConstants;
-import entity.AccountInfo;
 import entity.UserInfo;
 import menus.LoginMenu;
 import read.console.ConsoleReader;
@@ -17,6 +22,12 @@ public class Login {
 
     private final static Logger LOGGER = Logger.getLogger( Login.class.getName());
 
+    /**
+     * verify the user and the password
+     * @param username the username of the user readed from keyboard
+     * @param password the password of the user readed from keyboard
+     * @return the current user
+     */
     private UserInfo verifyWithObjects(String username, String password){
 
         UserInfo myUser = new UserInfo(username, password);
@@ -44,6 +55,11 @@ public class Login {
         }
     }
 
+
+    /**
+     * verify if it is a user from the list of users
+     * if it is, you login in the cache memory the accounts of the current user
+     */
     public void loginMenu(){
         ConsoleReader reader = ConsoleReader.getInstance();
         while (true) {

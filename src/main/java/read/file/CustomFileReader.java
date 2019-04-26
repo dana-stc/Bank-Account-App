@@ -1,3 +1,8 @@
+/**
+ * CustomFileReader class
+ * it reads and writes dinamically any king of object you want of any type
+ */
+
 package read.file;
 
 import java.io.*;
@@ -10,7 +15,9 @@ public class CustomFileReader {
 
     private final static Logger LOGGER = Logger.getLogger(CustomFileReader.class.getName());
 
-    // write
+    /**
+     * you can write dinamically any king of object you want of any type
+     */
     public <T> boolean writeFromFileAny(String filename, List<T> listUsers) {
         // save the object to file
         FileOutputStream fos = null;
@@ -39,6 +46,10 @@ public class CustomFileReader {
         return false;
     }
 
+    /**
+     * you can read dinamically any king of object you want of any type
+     * @return list of objects of any type
+     */
     public <T> List<T> readFromFileAny(String filename) {
         FileInputStream fis = null;
         ObjectInputStream in = null;

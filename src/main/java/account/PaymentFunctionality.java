@@ -1,3 +1,7 @@
+/**
+ * @Author Stoica Ioana-Dana
+ */
+
 package account;
 
 import cache.CacheUserData;
@@ -10,6 +14,10 @@ import java.math.BigDecimal;
 
 public class PaymentFunctionality {
 
+    /**
+     * transfer money between two accounts of the same type (Ron/ Euro) implementation
+     * @throws UnacceptableTransferException - you cannot make transfers if you don't have any accounts or you have only one
+     */
     public void transferSomeMoney() throws UnacceptableTransferException {
 
         String chosenOption;

@@ -1,3 +1,9 @@
+/**
+ * UserInfo class
+ *
+ * @author Stoica Ioana-Dana
+ */
+
 package entity;
 
 import java.io.Serializable;
@@ -8,6 +14,11 @@ public class UserInfo implements Serializable {
     private String userName;
     private String password;
 
+    /**
+     * Builds a new instance of a UserInfo
+     * @param userName name of the user
+     * @param password password of the user
+     */
     public UserInfo(String userName, String password) {
         this.userName = userName;
         this.password = password;
@@ -31,15 +42,8 @@ public class UserInfo implements Serializable {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

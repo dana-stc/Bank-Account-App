@@ -1,3 +1,12 @@
+/**
+ * CacheUserData class
+ * reading the file works as a cache;
+ * when you login, the user and the accounts are loaded from the memory;
+ * when you logout, the data is deleted, so you can have a new date when you login with other user
+ *
+ * @author Stoica Ioana-Dana
+ */
+
 package cache;
 
 import constants.FileConstants;
@@ -14,6 +23,9 @@ public class CacheUserData {
     private List<AccountInfo> listAccounts;
     private static CacheUserData instance = null;
 
+    /**
+     * constructor, private for Singleton
+     */
     private CacheUserData() {
     }
 
@@ -21,6 +33,9 @@ public class CacheUserData {
         this.userInfo = userInfo;
     }
 
+    /**
+     * it uploads in the cache memory the list of accounts for the current username
+     */
     public void populateListOfAccounts(){
         this.listAccounts = new ArrayList<>();
         CustomFileReader customFileReader = new CustomFileReader();
@@ -33,13 +48,18 @@ public class CacheUserData {
         }
     }
 
-    // returnez o singura instanta a clasei - Singleton !
+    /**
+     * Singleton Design Pattern
+     *
+     * @return a single instance of the class
+     */
     public static CacheUserData getInstance(){
         if(instance == null){
             instance = new CacheUserData();
         }
         return instance;
     }
+
 
     public static void destroyCache(){
         instance = null;

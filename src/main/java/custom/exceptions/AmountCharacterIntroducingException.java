@@ -1,3 +1,7 @@
+/**
+ * @Author Stoica Ioana-Dana
+ */
+
 package custom.exceptions;
 
 public class AmountCharacterIntroducingException extends Exception {
