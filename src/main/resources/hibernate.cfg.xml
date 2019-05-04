@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">PENTA</property>
+        <property name="hibernate.connection.password">PENTA</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.release_mode">auto</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <mapping class="entity.Account" />
+        <mapping class="entity.Notification" />
+        <mapping class="entity.Person" />
+        <mapping class="entity.UserInfo" />
+        <mapping class="entity.Transaction" />
+
+    </session-factory>
+
+</hibernate-configuration>

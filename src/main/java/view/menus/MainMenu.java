@@ -4,10 +4,10 @@
  * @Author Stoica Ioana-Dana
  */
 
-package menus;
+package view.menus;
 
-import login.Login;
-import read.console.ConsoleReader;
+import service.login.Login;
+import service.read.console.ConsoleReader;
 
 public class MainMenu {
 

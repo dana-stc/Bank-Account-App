@@ -3,7 +3,7 @@
  * it reads and writes dinamically any king of object you want of any type
  */
 
-package read.file;
+package service.read.file;
 
 import java.io.*;
 import java.util.ArrayList;

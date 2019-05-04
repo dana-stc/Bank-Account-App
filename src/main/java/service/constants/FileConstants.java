@@ -2,7 +2,7 @@
  * @Author Stoica Ioana-Dana
  */
 
-package constants;
+package service.constants;
 
 public class FileConstants {
     public static final String FILENAME = System.getProperty("user.dir") + "\\src\\main\\resources\\";

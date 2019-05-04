@@ -4,12 +4,12 @@
  * @Author Stoica Ioana-Dana
  */
 
-package menus;
+package view.menus;
 
-import custom.exceptions.AmountCharacterIntroducingException;
-import read.console.ConsoleReader;
-import account.AccountCreator;
-import account.AccountDisplayer;
+import service.exceptions.AmountCharacterIntroducingException;
+import service.read.console.ConsoleReader;
+import service.account.AccountCreator;
+import service.account.AccountDisplayer;
 
 public class AccountMenu {
 
@@ -39,7 +39,7 @@ public class AccountMenu {
 
             } else if (chosenOption3.equals("2")) {
                 AccountDisplayer accountDisplaying = new AccountDisplayer();
-                accountDisplaying.printAccountFile();
+                accountDisplaying.printAccounts();
 
             }else if (chosenOption3.equals("3")) {
                 LoginMenu loginMenu = new LoginMenu();

@@ -2,7 +2,7 @@
  * @Author Stoica Ioana-Dana
  */
 
-package custom.exceptions;
+package service.exceptions;
 
 public class AmountCharacterIntroducingException extends Exception {
 

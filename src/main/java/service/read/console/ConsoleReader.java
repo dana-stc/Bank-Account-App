@@ -3,7 +3,7 @@
  * reading from the keyboard an option
  */
 
-package read.console;
+package service.read.console;
 
 import java.util.Scanner;
 
