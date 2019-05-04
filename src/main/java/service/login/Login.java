@@ -52,6 +52,7 @@ public class Login {
             {
                 CacheUserData cache = CacheUserData.getInstance();
                 cache.setUserInfo(currentUser);
+                cache.populateAccountList();
                 LoginMenu secondMenu = new LoginMenu();
                 secondMenu.runSecondMenu();
                 break;

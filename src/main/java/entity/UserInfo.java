@@ -39,6 +39,10 @@ public class UserInfo {
     @OneToMany(fetch = FetchType.EAGER,mappedBy ="user")
     private List<Account> accountList;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy ="userInfo")
+    private List<Notification> notifications;
+
+
     public UserInfo() {
     }
 
@@ -115,5 +119,13 @@ public class UserInfo {
 
     public BigInteger getId() {
         return id;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 }

@@ -64,4 +64,26 @@ public class AccountRepository {
         }
     }
 
+
+    /**
+     * updating the accounts after a transfer
+     */
+    public void updateAccount(Account account) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.getTransaction().begin();
+            session.update(account);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+
 }

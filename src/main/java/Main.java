@@ -1,11 +1,10 @@
-/**
- * Main class
- *
- * @author Stoica Ioana-Dana
- */
-
 import repository.HibernateUtil;
 import view.menus.MainMenu;
+
+/**
+ * Main class
+ * @author Stoica Ioana-Dana
+ */
 
 public class Main {
 

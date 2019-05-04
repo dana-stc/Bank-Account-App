@@ -30,7 +30,6 @@ public class Transaction {
     @JoinColumn(name= "account_id")
     private Account account;
 
-
     public Transaction(){
     }
 
@@ -80,4 +79,8 @@ public class Transaction {
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
     }
+
+    public Account getAccount() { return account; }
+
+    public void setAccount(Account account) { this.account = account; }
 }

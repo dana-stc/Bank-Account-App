@@ -53,6 +53,7 @@ public class AccountCreator {
 
             if (verifyInfo(account)) {
                 accountRepository.createAccount(account);
+                cache.updateAccountList();
                 break;
             } else
                 System.out.println("Invalid data; please re-enter your information! ");
