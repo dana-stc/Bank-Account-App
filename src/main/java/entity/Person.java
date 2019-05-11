@@ -21,6 +21,9 @@ public class Person {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "email")
+    private String email;
+
     @OneToOne
     @JoinColumn(name="user_id")
     private UserInfo user;
@@ -28,10 +31,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(String address, String firstName, String lastName) {
+    public Person(String address, String firstName, String lastName, String email) {
         this.address = address;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
     public BigInteger getId() {
@@ -73,4 +77,8 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 }

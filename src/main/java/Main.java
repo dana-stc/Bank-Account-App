@@ -3,6 +3,7 @@ import view.menus.MainMenu;
 
 /**
  * Main class
+ *
  * @author Stoica Ioana-Dana
  */
 
@@ -12,5 +13,7 @@ public class Main {
         HibernateUtil.getSessionFactory();
         MainMenu menu = new MainMenu();
         menu.runMenu();
+        //UserRepository.createDummyUser(); // for static methods !
+
     }
 }

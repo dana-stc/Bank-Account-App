@@ -40,7 +40,7 @@ public class AccountCreator {
             {
                 throw new AmountCharacterIntroducingException("Characters not allowed in amount");
             }
-            account.setBalance(new BigDecimal(balance));
+            account.setAmount(new BigDecimal(balance));
 
             System.out.println("Enter the account type - Euro or Ron - ");
             account.setAccountType(reader.readFromConsole());

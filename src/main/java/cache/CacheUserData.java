@@ -50,7 +50,6 @@ public class CacheUserData {
         this.accountList = accountRepository.getListOfAccountsFromDb(this.userInfo.getId());
     }
 
-
     public static void destroyCache(){
         instance = null;
     }

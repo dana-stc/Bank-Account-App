@@ -38,7 +38,7 @@ public class UserRepository {
     }
 
 
-    public void createDummyUser(){
+    public static void createDummyUser(){
 
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.getCurrentSession();
@@ -47,24 +47,24 @@ public class UserRepository {
             session.getTransaction().begin();
 
             UserInfo user = new UserInfo("ioanad", "myPas", LocalDateTime.now(), LocalDateTime.now());
-            Person person = new Person( "Tudor Vladimirescu", "Ioana", "Stoica" );
+            Person person = new Person( "Tudor Vladimirescu", "Ioana", "Stoica", "ioanad@gmail.com" );
 
             session.persist(user);
             person.setUser(user);
             session.persist(person);
 
             UserInfo user1 = new UserInfo("gabist", "myPas2", LocalDateTime.now(), LocalDateTime.now());
-            Person person1 = new Person( "str. Principala", "Gabi", "Stoica" );
+            Person person1 = new Person( "str. Principala", "Gabi", "Stoica", "gabis@gmail.com" );
 
             session.persist(user1);
-            person.setUser(user1);
+            person1.setUser(user1);
             session.persist(person1);
 
             UserInfo user2 = new UserInfo("cipr", "myPas3", LocalDateTime.now(), LocalDateTime.now());
-            Person person2 = new Person( "Tudor Vladimirescu", "Ciprian", "Recianu" );
+            Person person2 = new Person( "Tudor Vladimirescu", "Ciprian", "Recianu", "cipr@gmail.com" );
 
             session.persist(user2);
-            person.setUser(user2);
+            person2.setUser(user2);
             session.persist(person2);
 
             session.getTransaction().commit();

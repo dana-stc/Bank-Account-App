@@ -25,8 +25,8 @@ public class Account implements Serializable {
     @Column(name = "account_number")
     private String accountNumber;
 
-    @Column(name = "balance")
-    private BigDecimal balance;
+    @Column(name = "amount")
+    private BigDecimal amount;
 
     @Column(name = "account_type")
     private String accountType;
@@ -41,15 +41,15 @@ public class Account implements Serializable {
     @JoinColumn(name= "user_id")
     private UserInfo user;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy ="account")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy ="fromAccount")
     private List<Transaction> transactions;
 
     public Account(){
     }
 
-    public Account(String accountNumber, BigDecimal balance, String accountType, LocalDateTime createdTime, LocalDateTime updatedTime) {
+    public Account(String accountNumber, BigDecimal amount, String accountType, LocalDateTime createdTime, LocalDateTime updatedTime) {
         this.accountNumber = accountNumber;
-        this.balance = balance;
+        this.amount = amount;
         this.accountType = accountType;
         this.createdTime = createdTime;
         this.updatedTime = updatedTime;
@@ -72,12 +72,12 @@ public class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public void setAmount(BigDecimal balance) {
+        this.amount = balance;
     }
 
     public String getAccountType() {
@@ -114,6 +114,6 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return this.accountNumber + ", " + this.balance + ", " + this.accountType;
+        return this.accountNumber + ", " + this.amount + ", " + this.accountType;
     }
 }

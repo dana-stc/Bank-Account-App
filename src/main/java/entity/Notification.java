@@ -29,7 +29,7 @@ public class Notification {
     public Notification(){
     }
 
-    public Notification(BigInteger userId, String details, LocalDateTime createdTime, LocalDateTime sentTime) {
+    public Notification(String details, LocalDateTime createdTime, LocalDateTime sentTime) {
         this.details = details;
         this.createdTime = createdTime;
         this.sentTime = sentTime;
@@ -74,4 +74,5 @@ public class Notification {
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
     }
+
 }

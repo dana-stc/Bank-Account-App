@@ -1,25 +1,20 @@
 package repository;
 
 import entity.Account;
-import entity.Person;
 import entity.Transaction;
-import entity.UserInfo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import service.constants.TransactionType;
 
-import javax.persistence.NoResultException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TransferRepository {
 
     private final static Logger LOGGER = Logger.getLogger( TransferRepository.class.getName());
 
-    public void createTransfer(Account accountFrom, String toAccount, BigDecimal balance){
+    public void createTransfer(Account fromAccount, Account toAccount, String fromAccountNumber, String toAccountNumber,  BigDecimal amount){
 
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.getCurrentSession();
@@ -27,10 +22,16 @@ public class TransferRepository {
         try {
             session.getTransaction().begin();
 
-            Transaction transaction = new Transaction( toAccount, balance, "", LocalDateTime.now());
-            transaction.setAccount(accountFrom);
+            Transaction transactionFromAccount = new Transaction( fromAccountNumber, amount, "", LocalDateTime.now(), TransactionType.outgoing);
+            Transaction transactionToAccount = new Transaction( toAccountNumber, amount, "", LocalDateTime.now(), TransactionType.incoming);
 
-            session.persist(transaction);
+            // set the object that contains that primary key
+            transactionFromAccount.setFromAccount(fromAccount);
+            transactionToAccount.setFromAccount(toAccount);
+
+            // save the transaction
+            session.persist(transactionFromAccount);
+            session.persist(transactionToAccount);
 
             session.getTransaction().commit();
 

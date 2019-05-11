@@ -2,13 +2,13 @@ package service.account;
 
 import cache.CacheUserData;
 import repository.AccountRepository;
+import repository.NotificationRepository;
 import repository.TransferRepository;
 import service.exceptions.UnacceptableTransferException;
 import entity.Account;
 import service.read.console.ConsoleReader;
 
 import java.math.BigDecimal;
-
 
 /**
  * @Author Stoica Ioana-Dana
@@ -48,7 +48,7 @@ public class PaymentFunctionality {
 
         System.out.println("Please enter the amount that you want to transfer");
         chosenOption = reader.readFromConsole();
-        if (chosenOption.matches("[0-9]+") && new BigDecimal(chosenOption).compareTo(currentAccount.getBalance()) <= 0) {
+        if (chosenOption.matches("[0-9]+") && new BigDecimal(chosenOption).compareTo(currentAccount.getAmount()) <= 0) {
             this.enterAmount(currentAccount);
         } else {
             System.out.println("Please enter an amount <= than the current amount! ");
@@ -69,12 +69,12 @@ public class PaymentFunctionality {
         if (chosenOption.matches("[0-9]+") && Integer.parseInt(chosenOption) < cache.getAccountList().size() + 1) {
             Account secondAccount = cache.getAccountList().get(Integer.parseInt(chosenOption) - 1);
 
-            BigDecimal currentAcountAmount = currentAccount.getBalance();
-            BigDecimal secondAccountAmount = secondAccount.getBalance();
+            BigDecimal currentAcountAmount = currentAccount.getAmount();
+            BigDecimal secondAccountAmount = secondAccount.getAmount();
             currentAcountAmount = currentAcountAmount.subtract(chosenAmount); // '-' operation in BigDecimal
             secondAccountAmount = secondAccountAmount.add(chosenAmount); // '+' operation in BigDecimal
-            currentAccount.setBalance(currentAcountAmount);
-            secondAccount.setBalance(secondAccountAmount);
+            currentAccount.setAmount(currentAcountAmount);
+            secondAccount.setAmount(secondAccountAmount);
 
             System.out.println(chosenAmount + " " + currentAccount.getAccountType() + " had been transfered into your " + secondAccount.getAccountNumber() + " account.");
 
@@ -87,8 +87,10 @@ public class PaymentFunctionality {
             accountRepository.updateAccount(secondAccount);
 
             TransferRepository transferRepository = new TransferRepository();
-            transferRepository.createTransfer(currentAccount, secondAccount.getAccountNumber(), chosenAmount);
+            transferRepository.createTransfer(currentAccount,secondAccount,currentAccount.getAccountNumber(), secondAccount.getAccountNumber(), chosenAmount);
 
+            NotificationRepository notificationRepository = new NotificationRepository();
+            notificationRepository.createNotification(cache.getUserInfo());
 
         } else {
             System.out.println("Please enter a valid option! ");

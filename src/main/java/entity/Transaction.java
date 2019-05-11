@@ -1,5 +1,7 @@
 package entity;
 
+import service.constants.TransactionType;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,11 +16,11 @@ public class Transaction {
     @Column(name = "transaction_id")
     private BigInteger id;
 
-    @Column(name = "to_account")
-    private String toAccount;
+    @Column(name = "account")
+    private String account;
 
-    @Column(name = "balance")
-    private BigDecimal balance;
+    @Column(name = "amount")
+    private BigDecimal amount;
 
     @Column(name = "details")
     private String details;
@@ -26,42 +28,40 @@ public class Transaction {
     @Column(name = "created_time")
     private LocalDateTime createdTime;
 
+    @Column(name = "transaction_type")
+    @Enumerated(EnumType.STRING)
+    private TransactionType transactionType;
+
+    // with table Account
     @ManyToOne
     @JoinColumn(name= "account_id")
-    private Account account;
+    private Account fromAccount;
 
     public Transaction(){
     }
 
-    public Transaction(String toAccount, BigDecimal balance, String details, LocalDateTime createdTime) {
-        this.toAccount = toAccount;
-        this.balance = balance;
+    public Transaction(String account, BigDecimal amount, String details, LocalDateTime createdTime, TransactionType type) {
+        this.account = account;
+        this.amount = amount;
         this.details = details;
         this.createdTime = createdTime;
+        this.transactionType = type;
     }
 
-    public BigInteger getId() {
-        return id;
+    public String getAccount() {
+        return account;
     }
 
-    public void setId(BigInteger id) {
-        this.id = id;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public String getToAccount() {
-        return toAccount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setToAccount(String toAccount) {
-        this.toAccount = toAccount;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public String getDetails() {
@@ -80,7 +80,27 @@ public class Transaction {
         this.createdTime = createdTime;
     }
 
-    public Account getAccount() { return account; }
+    public Account getFromAccount() {
+        return fromAccount;
+    }
 
-    public void setAccount(Account account) { this.account = account; }
+    public void setFromAccount(Account fromAccount) {
+        this.fromAccount = fromAccount;
+    }
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+        public TransactionType getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
 }
